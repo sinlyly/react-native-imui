@@ -449,13 +449,15 @@ public class ChatInputView extends LinearLayout {
     }
 
     public void setSoftInput(boolean resize) {
-        mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
-                | (resize ? WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE : WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN));
+        //update_by_sin  app default setting is justPan,so don`t need change any view layout!
+       // mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+         //       | (resize ? WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE : WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN));
     }
 
     public void dismissMenuAndResetSoftMode() {
-        mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
-                | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        //update_by_sin  app default setting is justPan,so don`t need change any view layout!
+       // mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+         //       | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 //        try {
 //            Thread.sleep(140);
 //        } catch (InterruptedException e) {
@@ -464,13 +466,14 @@ public class ChatInputView extends LinearLayout {
 
         dismissMenuLayout(1);
         showInputMethod();
-
-        mChatInput.requestFocus();
+        //update_by_sin is already focus.
+       // mChatInput.requestFocus();
     }
 
     public void dismissSoftInputAndShowMenu() {
-        mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
-                | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        //update_by_sin  app default setting is justPan,so don`t need change any view layout!
+      //  mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+        //        | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 //        try {
 //            Thread.sleep(140);
 //        } catch (InterruptedException e) {
