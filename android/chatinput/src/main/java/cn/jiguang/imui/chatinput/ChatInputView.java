@@ -72,6 +72,7 @@ public class ChatInputView extends LinearLayout {
     private LinearLayout mChatInputContainer;
     private FrameLayout mMenuContainer;
 
+    private LinearLayout emoticonLayout;
     private EmoticonPickerView emoticonPickerView;
     private LinearLayout actionLayout;
 
@@ -142,10 +143,13 @@ public class ChatInputView extends LinearLayout {
         mChatInputContainer = (LinearLayout) findViewById(R.id.aurora_ll_input_container);
         mMenuContainer = (FrameLayout) findViewById(R.id.aurora_fl_menu_container);
 
+        emoticonLayout = (LinearLayout) findViewById(R.id.aurora_view_emoticon_layout);
         emoticonPickerView = (EmoticonPickerView) findViewById(R.id.emoticon_picker_view);
         emoticonPickerView.setWithSticker(true);
-        actionLayout = (LinearLayout) findViewById(R.id.aurora_view_action_layout);
+        emoticonPickerView.setVisibility(GONE);
+        emoticonLayout.setVisibility(GONE);
 
+        actionLayout = (LinearLayout) findViewById(R.id.aurora_view_action_layout);
         mMenuContainer.setVisibility(GONE);
         actionLayout.setVisibility(GONE);
         mChatVoice.setVisibility(INVISIBLE);
@@ -200,6 +204,7 @@ public class ChatInputView extends LinearLayout {
 
         key += " ";
         name += " ";
+
         // insert account
         int start = mChatInput.getSelectionStart();
         if (start < 0 || start >= mChatInput.length()) {
@@ -210,14 +215,15 @@ public class ChatInputView extends LinearLayout {
 
         // 替换成昵称
         Editable editable = mChatInput.getText();
-        name = "@" + name;
-
+        if(!name.startsWith("@")){
+             name = "@" + name;
+        }
         int length = name.length();
         // 不是输入的@，而是插进来的
-//        if (!force) {
-        start--;
-//        length++;
-//        }
+        if (start > 0) {
+            start--;
+           //length++;
+        }
 
         editable.setSpan(TeamMemberAitHelper.getInputAitSpan(mContext, name, mChatInput.getTextSize(), mChatInput.getMeasuredWidth()),
                 start, start + length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -293,6 +299,7 @@ public class ChatInputView extends LinearLayout {
 
                     changeVoiceToInput(true);
                     actionLayout.setVisibility(VISIBLE);
+                    emoticonLayout.setVisibility(INVISIBLE);
                     emoticonPickerView.setVisibility(INVISIBLE);
                     if (showType == 1) {
                         mEmojiBtn.setImageResource(R.drawable.nim_message_button_bottom_emoji_selector);
@@ -303,10 +310,17 @@ public class ChatInputView extends LinearLayout {
 
                     showType = 1;
                     changeVoiceToInput(true);
+
+                    emoticonLayout.setVisibility(VISIBLE);
                     emoticonPickerView.setVisibility(VISIBLE);
                     mEmojiBtn.setImageResource(R.drawable.nim_message_button_bottom_text_selector);
                     emoticonPickerView.show(emoticonSelectedListener);
-                    actionLayout.setVisibility(INVISIBLE);
+
+                    //actionLayout.setVisibility(INVISIBLE);
+                    //update_by_sin fix problem when  set invisible the onclick is not invisible!
+                    actionLayout.setVisibility(GONE);
+                    actionLayout.requestLayout();
+
                 }
 
                 if (mListener != null) {
@@ -319,7 +333,7 @@ public class ChatInputView extends LinearLayout {
 
                 }
                 mLastClickId = view.getId();
-//                mMenuContainer.requestLayout();
+               mMenuContainer.requestLayout();
             }
 //            Log.w(TAG, "viewId: " + view.getId() + "-showType:" + showType);
         }
@@ -430,7 +444,7 @@ public class ChatInputView extends LinearLayout {
         dismissMenuLayout(100);
     }
 
-    private void hideInputMethod() {
+    public void hideInputMethod() {
         isKeyboardShowed = false;
 //        uiHandler.removeCallbacks(showTextRunnable);
         inputMethodManager.hideSoftInputFromWindow(mChatInput.getWindowToken(), 0);
@@ -438,7 +452,7 @@ public class ChatInputView extends LinearLayout {
     }
 
     // 显示键盘布局
-    private void showInputMethod() {
+    public void showInputMethod() {
         mChatInput.requestFocus();
         //如果已经显示,则继续操作时不需要把光标定位到最后
         if (!isKeyboardShowed) {
@@ -450,14 +464,14 @@ public class ChatInputView extends LinearLayout {
 
     public void setSoftInput(boolean resize) {
         //update_by_sin  app default setting is justPan,so don`t need change any view layout!
-       // mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
-         //       | (resize ? WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE : WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN));
+//        mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+//                | (resize ? WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE : WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN));
     }
 
     public void dismissMenuAndResetSoftMode() {
-        //update_by_sin  app default setting is justPan,so don`t need change any view layout!
-       // mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
-         //       | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        //update_by_sin  app default set is justPan,so don`t need change any view layout!
+//        mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+//                | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 //        try {
 //            Thread.sleep(140);
 //        } catch (InterruptedException e) {
@@ -466,14 +480,14 @@ public class ChatInputView extends LinearLayout {
 
         dismissMenuLayout(1);
         showInputMethod();
-        //update_by_sin is already focus.
+
        // mChatInput.requestFocus();
     }
 
     public void dismissSoftInputAndShowMenu() {
-        //update_by_sin  app default setting is justPan,so don`t need change any view layout!
-      //  mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
-        //        | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        //update_by_sin  app keyboard default setting is justPan,so don`t need change any view layout!
+//        mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+//                | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 //        try {
 //            Thread.sleep(140);
 //        } catch (InterruptedException e) {
@@ -636,6 +650,17 @@ public class ChatInputView extends LinearLayout {
         });
 
         shrinkAnimatorSet.start();
+    }
+
+    /**
+     * 获取键盘高度 update_by_sin
+     * @return
+     */
+    private int getKeyboardViewHeight(){
+        Rect r = new Rect();
+        mWindow.getDecorView().getWindowVisibleDisplayFrame(r);
+        int screenHeight = mWindow.getDecorView().getRootView().getHeight();
+        return screenHeight - r.bottom + mChatInputContainer.getHeight();
     }
 
     private ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {

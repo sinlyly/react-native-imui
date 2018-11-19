@@ -8,10 +8,12 @@ import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.jiguang.imui.commons.models.IMessage;
 import cn.jiguang.imui.messagelist.module.RCTAccountNotice;
 import cn.jiguang.imui.messagelist.module.RCTBankTransfer;
 import cn.jiguang.imui.messagelist.module.RCTCard;
 import cn.jiguang.imui.messagelist.module.RCTExtend;
+import cn.jiguang.imui.messagelist.module.RCTFile;
 import cn.jiguang.imui.messagelist.module.RCTLink;
 import cn.jiguang.imui.messagelist.module.RCTLocation;
 import cn.jiguang.imui.messagelist.module.RCTMediaFile;
@@ -47,13 +49,116 @@ public class MessageUtil {
                 "0".equals(message.getString(MessageConstant.Message.IS_OUTGOING)));
         RCTExtend extend = null;
         ReadableMap ext;
+        String typeName = rctMsg.getType().name();
+        Log.d("AuroraIMUIModule","**************" + rctMsg.getType().name());
+
+//        if(typeName.equals(IMessage.MessageType.RECEIVE_FILE) || typeName.equals(IMessage.MessageType.SEND_FILE)){
+//            if (message.hasKey(MessageConstant.Message.EXTEND)) {
+//                ext = message.getMap(MessageConstant.Message.EXTEND);
+//                extend = new RCTFile(ext.getString(MessageConstant.File.NAME), ext.getString(MessageConstant.File.EXT),
+//                        ext.getString(MessageConstant.File.PATH),ext.getString(MessageConstant.File.SIZE));
+//            }
+//        }else if(rctMsg.getType().name().equals(IMessage.MessageType.RECEIVE_IMAGE) || typeName.equals(IMessage.MessageType.SEND_IMAGE)){
+//            if (message.hasKey(MessageConstant.Message.EXTEND)) {
+//                ext = message.getMap(MessageConstant.Message.EXTEND);
+//                RCTMediaFile e = new RCTMediaFile(ext.getString(MessageConstant.MediaFile.THUMB_PATH), ext.getString(MessageConstant.MediaFile.PATH),
+//                        ext.getString(MessageConstant.MediaFile.URL));
+//                if (ext.hasKey(MessageConstant.MediaFile.DISPLAY_NAME)) {
+//                    e.setDisplayName(ext.getString(MessageConstant.MediaFile.DISPLAY_NAME));
+//                }
+//                if (ext.hasKey(MessageConstant.MediaFile.DURATION)) {
+//                    try {
+//                        e.setDuration(Long.parseLong(ext.getString(MessageConstant.MediaFile.DURATION)));
+//                    } catch (NumberFormatException e1) {
+//                        e1.printStackTrace();
+//                    }
+//                }
+//                if (ext.hasKey(MessageConstant.MediaFile.HEIGHT)) {
+//                    e.setHeight(ext.getString(MessageConstant.MediaFile.HEIGHT));
+//                }
+//                if (ext.hasKey(MessageConstant.MediaFile.WIDTH)) {
+//                    e.setWidth(ext.getString(MessageConstant.MediaFile.WIDTH));
+//                }
+//                extend = e;
+//            }
+//        }else if(rctMsg.getType().name().equals(IMessage.MessageType.RECEIVE_VOICE) || typeName.equals(IMessage.MessageType.SEND_VOICE)){
+//            if (message.hasKey(MessageConstant.Message.EXTEND)) {
+//                ext = message.getMap(MessageConstant.Message.EXTEND);
+//                RCTMediaFile e = new RCTMediaFile(ext.getString(MessageConstant.MediaFile.THUMB_PATH), ext.getString(MessageConstant.MediaFile.PATH),
+//                        ext.getString(MessageConstant.MediaFile.URL));
+//                if (ext.hasKey(MessageConstant.MediaFile.DISPLAY_NAME)) {
+//                    e.setDisplayName(ext.getString(MessageConstant.MediaFile.DISPLAY_NAME));
+//                }
+//                if (ext.hasKey(MessageConstant.MediaFile.DURATION)) {
+//                    try {
+//                        e.setDuration(Long.parseLong(ext.getString(MessageConstant.MediaFile.DURATION)));
+//                    } catch (NumberFormatException e1) {
+//                        e1.printStackTrace();
+//                    }
+//                }
+//                if (ext.hasKey(MessageConstant.MediaFile.HEIGHT)) {
+//                    e.setHeight(ext.getString(MessageConstant.MediaFile.HEIGHT));
+//                }
+//                if (ext.hasKey(MessageConstant.MediaFile.WIDTH)) {
+//                    e.setWidth(ext.getString(MessageConstant.MediaFile.WIDTH));
+//                }
+//                extend = e;
+//            }
+//        }else if(rctMsg.getType().name().equals(IMessage.MessageType.RECEIVE_LOCATION) || typeName.equals(IMessage.MessageType.SEND_LOCATION)){
+//            if (message.hasKey(MessageConstant.Message.EXTEND)) {
+//                ext = message.getMap(MessageConstant.Message.EXTEND);
+//                extend = new RCTLocation(ext.getString(MessageConstant.Location.LATITUDE), ext.getString(MessageConstant.Location.LONGITUDE),
+//                        ext.getString(MessageConstant.Location.ADDRESS));
+//            }
+//        }else if(rctMsg.getType().name().equals(IMessage.MessageType.RECEIVE_BANK_TRANSFER) || typeName.equals(IMessage.MessageType.SEND_BANK_TRANSFER)){
+//            if (message.hasKey(MessageConstant.Message.EXTEND)) {
+//                ext = message.getMap(MessageConstant.Message.EXTEND);
+//                extend = new RCTBankTransfer(ext.getString(MessageConstant.BankTransfer.AMOUNT), ext.getString(MessageConstant.BankTransfer.SERIA_NO),
+//                        ext.getString(MessageConstant.BankTransfer.COMMENTS));
+//            }
+//        }else if(rctMsg.getType().name().equals(IMessage.MessageType.RECEIVE_ACCOUNT_NOTICE) || typeName.equals(IMessage.MessageType.SEND_ACCOUNT_NOTICE)){
+//            if (message.hasKey(MessageConstant.Message.EXTEND)) {
+//                ext = message.getMap(MessageConstant.Message.EXTEND);
+//                extend = new RCTBankTransfer(ext.getString(MessageConstant.BankTransfer.AMOUNT), ext.getString(MessageConstant.BankTransfer.SERIA_NO),
+//                        ext.getString(MessageConstant.BankTransfer.COMMENTS));
+//            }
+//        }else if(rctMsg.getType().name().equals(IMessage.MessageType.RECEIVE_RED_PACKET) || typeName.equals(IMessage.MessageType.SEND_RED_PACKET)){
+//            if (message.hasKey(MessageConstant.Message.EXTEND)) {
+//                ext = message.getMap(MessageConstant.Message.EXTEND);
+//                extend = new RCTRedPacket(ext.getString(MessageConstant.RedPacket.TYPE), ext.getString(MessageConstant.RedPacket.COMMENTS),
+//                        ext.getString(MessageConstant.RedPacket.SERIAL_NO));
+//            }
+//        }else if(rctMsg.getType().name().equals(IMessage.MessageType.RECEIVE_LINK) || typeName.equals(IMessage.MessageType.SEND_LINK)){
+//            if (message.hasKey(MessageConstant.Message.EXTEND)) {
+//                ext = message.getMap(MessageConstant.Message.EXTEND);
+//                extend = new RCTLink(ext.getString(MessageConstant.Link.TITLE), ext.getString(MessageConstant.Link.DESCRIBE),
+//                        ext.getString(MessageConstant.Link.IMAGE), ext.getString(MessageConstant.Link.LINK_URL));
+//            }
+//        }else if(rctMsg.getType().name().equals(IMessage.MessageType.RED_PACKET_OPEN)){
+//            if (message.hasKey(MessageConstant.Message.EXTEND)) {
+//                ext = message.getMap(MessageConstant.Message.EXTEND);
+//                extend = new RCTRedPacketOpen(ext.getString(MessageConstant.RedPacketOpen.HAS_RED_PACKET),
+//                        ext.getString(MessageConstant.RedPacketOpen.SERIAL_NO), ext.getString(MessageConstant.RedPacketOpen.TIP_MSG),
+//                        ext.getString(MessageConstant.RedPacketOpen.SEND_ID), ext.getString(MessageConstant.RedPacketOpen.OPEN_ID));
+//            }
+//        }else if(rctMsg.getType().name().equals(IMessage.MessageType.RECEIVE_CARD)  || typeName.equals(IMessage.MessageType.SEND_CARD)){
+//            if (message.hasKey(MessageConstant.Message.EXTEND)) {
+//                ext = message.getMap(MessageConstant.Message.EXTEND);
+//                extend = new RCTCard(ext.getString(MessageConstant.Card.type),ext.getString(MessageConstant.Card.name),
+//                        ext.getString(MessageConstant.Card.imgPath),ext.getString(MessageConstant.Card.sessionId));
+//            }
+//        }else if(rctMsg.getType().name().equals(IMessage.MessageType.RECEIVE_TEXT) || typeName.equals(IMessage.MessageType.SEND_TEXT)){
+//            rctMsg.setText(message.getString(MessageConstant.Message.MSG_TEXT));
+//        }else{
+//            rctMsg.setText(message.getString(MessageConstant.Message.MSG_TEXT));
+//        }
+
+
         switch (rctMsg.getType()) {
             case SEND_VOICE:
             case RECEIVE_VOICE:
             case SEND_VIDEO:
             case RECEIVE_VIDEO:
-            case SEND_FILE:
-            case RECEIVE_FILE:
             case SEND_IMAGE:
             case RECEIVE_IMAGE:
                 if (message.hasKey(MessageConstant.Message.EXTEND)) {
@@ -87,6 +192,14 @@ public class MessageUtil {
                             ext.getString(MessageConstant.Location.ADDRESS));
                 }
                 break;
+            case SEND_FILE:
+            case RECEIVE_FILE:
+                if (message.hasKey(MessageConstant.Message.EXTEND)) {
+                    ext = message.getMap(MessageConstant.Message.EXTEND);
+                    extend = new RCTFile(ext.getString(MessageConstant.File.NAME), ext.getString(MessageConstant.File.EXT),
+                            ext.getString(MessageConstant.File.PATH),ext.getString(MessageConstant.File.SIZE));
+                }
+                break;  
             case SEND_BANK_TRANSFER:
             case RECEIVE_BANK_TRANSFER:
                 if (message.hasKey(MessageConstant.Message.EXTEND)) {
@@ -128,7 +241,6 @@ public class MessageUtil {
                             ext.getString(MessageConstant.RedPacketOpen.SEND_ID), ext.getString(MessageConstant.RedPacketOpen.OPEN_ID));
                 }
                 break;
-
             case SEND_CARD:
             case RECEIVE_CARD:
                 if (message.hasKey(MessageConstant.Message.EXTEND)) {
@@ -148,7 +260,9 @@ public class MessageUtil {
                 break;
             default:
                 rctMsg.setText(message.getString(MessageConstant.Message.MSG_TEXT));
+                break;
         }
+
         rctMsg.setExtend(extend);
         ReadableMap user = message.getMap(MessageConstant.Message.FROM_USER);
         RCTUser rctUser = new RCTUser(user.getString(MessageConstant.User.USER_ID), user.getString(MessageConstant.User.DISPLAY_NAME),

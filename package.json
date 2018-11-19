@@ -20,39 +20,60 @@
         }
       },
       "/Users/dowin/KinoooProject/CompanyApp/react-native-wallet"
+    ],
+    [
+      {
+        "raw": "react-native-imui@github:sinlyly/react-native-imui",
+        "scope": null,
+        "escapedName": "react-native-imui",
+        "name": "react-native-imui",
+        "rawSpec": "github:sinlyly/react-native-imui",
+        "spec": "github:sinlyly/react-native-imui",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:sinlyly/react-native-imui.git",
+          "sshUrl": "git+ssh://git@github.com/sinlyly/react-native-imui.git",
+          "httpsUrl": "git+https://github.com/sinlyly/react-native-imui.git",
+          "gitUrl": "git://github.com/sinlyly/react-native-imui.git",
+          "shortcut": "github:sinlyly/react-native-imui",
+          "directUrl": "https://raw.githubusercontent.com/sinlyly/react-native-imui/master/package.json"
+        }
+      },
+      "/Users/liuy/Documents/APP/project/sgm-share-rn/elearning"
     ]
   ],
-  "_from": "git+https://github.com/reactnativecomponent/react-native-imui.git",
-  "_id": "react-native-imui@1.0.3",
+  "_from": "sinlyly/react-native-imui",
+  "_id": "react-native-imui@1.0.7",
   "_inCache": true,
   "_location": "/react-native-imui",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "react-native-imui@git+https://github.com/reactnativecomponent/react-native-imui.git",
+    "raw": "react-native-imui@github:sinlyly/react-native-imui",
     "scope": null,
     "escapedName": "react-native-imui",
     "name": "react-native-imui",
-    "rawSpec": "git+https://github.com/reactnativecomponent/react-native-imui.git",
-    "spec": "git+https://github.com/reactnativecomponent/react-native-imui.git",
+    "rawSpec": "github:sinlyly/react-native-imui",
+    "spec": "github:sinlyly/react-native-imui",
     "type": "hosted",
     "hosted": {
       "type": "github",
-      "ssh": "git@github.com:reactnativecomponent/react-native-imui.git",
-      "sshUrl": "git+ssh://git@github.com/reactnativecomponent/react-native-imui.git",
-      "httpsUrl": "git+https://github.com/reactnativecomponent/react-native-imui.git",
-      "gitUrl": "git://github.com/reactnativecomponent/react-native-imui.git",
-      "shortcut": "github:reactnativecomponent/react-native-imui",
-      "directUrl": "https://raw.githubusercontent.com/reactnativecomponent/react-native-imui/master/package.json"
+      "ssh": "git@github.com:sinlyly/react-native-imui.git",
+      "sshUrl": "git+ssh://git@github.com/sinlyly/react-native-imui.git",
+      "httpsUrl": "git+https://github.com/sinlyly/react-native-imui.git",
+      "gitUrl": "git://github.com/sinlyly/react-native-imui.git",
+      "shortcut": "github:sinlyly/react-native-imui",
+      "directUrl": "https://raw.githubusercontent.com/sinlyly/react-native-imui/master/package.json"
     }
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "git+https://github.com/reactnativecomponent/react-native-imui.git#8615656d916352a430e4a6312b4357ac5d6b04f6",
-  "_shasum": "335e972a8a57c354ee30da9d8466d91d7e4a12aa",
+  "_resolved": "git://github.com/sinlyly/react-native-imui.git#0da6f036c409b8e6f7d48179c403e9266b564842",
+  "_shasum": "e513c455f565eb3f818eec3a09d754b601cad23f",
   "_shrinkwrap": null,
-  "_spec": "react-native-imui@git+https://github.com/reactnativecomponent/react-native-imui.git",
-  "_where": "/Users/dowin/KinoooProject/CompanyApp/react-native-wallet",
+  "_spec": "react-native-imui@github:sinlyly/react-native-imui",
+  "_where": "/Users/liuy/Documents/APP/project/sgm-share-rn/elearning",
   "author": "",
   "bugs": {
     "url": "https://github.com/reactnativecomponent/react-native-imui/issues"

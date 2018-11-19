@@ -66,9 +66,24 @@ export default class ChatInput extends Component {
     this.props.onEditTextChange(event.nativeEvent.text);
   }
 
+  showKeyBoard(){
+    RCTChatInput.showKeyBoard();
+  }
+
+  hideKeyBoard(){
+    RCTChatInput.hideKeyBoard();
+  }
+
+  inputAppendText = (str_text = '') => {
+    this.inputRef.setNativeProps({
+      inputAppendText : str_text,
+    });
+  };
+
   render() {
     return (
       <RCTChatInput 
+          ref = { inputRef => this.inputRef = inputRef }
           {...this.props} 
           onSendText={this._onSendText}
           onSendVideo={this._onSendVideo}
@@ -93,4 +108,8 @@ ChatInput.propTypes = {
   ...ViewPropTypes
 };
 
-var RCTChatInput = requireNativeComponent('RCTChatInput', ChatInput);
+const RCTChatInput = requireNativeComponent('RCTChatInput', ChatInput,{
+  nativeOnly : {
+    inputAppendText : true,
+  }
+});

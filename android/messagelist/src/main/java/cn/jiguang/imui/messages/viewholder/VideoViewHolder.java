@@ -36,6 +36,8 @@ public class VideoViewHolder<MESSAGE extends IMessage> extends AvatarViewHolder<
             return;
         }
         mImageLoader.loadImage(mImageCover, ext.getThumbPath());
+        //mImageCover.setMaxWidth(Integer.parseInt(ext.getWidth()));
+//        mImageCover.setMaxHeight(Integer.parseInt(ext.getHeight()));
         mImageCover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -20,6 +20,7 @@ import android.view.View;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.common.MapBuilder;
@@ -242,6 +243,7 @@ public class ReactChatInputManager extends ViewGroupManager<ChatInputView> {
                     event.putString("text", changeText);
                     reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(chatInput.getId(),
                             ON_EDIT_TEXT_CHANGE_EVENT, event);
+                    chatInput.hideInputMethod();
                 }
             }
         });
@@ -280,6 +282,8 @@ public class ReactChatInputManager extends ViewGroupManager<ChatInputView> {
             chatInputView.dismissMenuLayout(1);
         }
     }
+
+
 
     @Override
     public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
@@ -330,6 +334,7 @@ public class ReactChatInputManager extends ViewGroupManager<ChatInputView> {
     }
 
     private BroadcastReceiver RCTChatInputReceiver = new BroadcastReceiver() {
+
         @Override
         public void onReceive(Context context, Intent intent) {
             Gson gson = new GsonBuilder().registerTypeAdapter(RCTMessage.class, new RCTChatInputDeserialize())
@@ -342,4 +347,21 @@ public class ReactChatInputManager extends ViewGroupManager<ChatInputView> {
             }
         }
     };
+
+    @ReactMethod
+    public void showKeyBoard(){
+        chatInput.showInputMethod();
+    }
+
+    @ReactMethod
+    public void hideKeyBoard(){
+        chatInput.hideInputMethod();
+    }
+
+    @ReactProp(name = "inputAppendText")
+    public void setInputAppendText(ChatInputView chatInputView,final String appendText) {
+        chatInput.showInputMethod();
+        chatInput.appendReplace("", appendText);
+    }
+
 }

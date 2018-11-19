@@ -227,8 +227,8 @@ open class IMUIBaseMessageCell: UICollectionViewCell, IMUIMessageCellProtocal,Me
     if self.message?.type == .text {
 //        self.delegate?.messageCollectionView?(tapCellView: "")
     }else if self.message?.type == .image {
-        let strMsgID = (self.message?.msgId)! as NSString
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ShowOrigImageNotification"), object: strMsgID)
+       // let strMsgID = (self.message?.msgId)! as NSString
+       // NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ShowOrigImageNotification"), object: strMsgID)
 //        self.delegate?.messageCollectionView?(didTapImageMessageBubbleInCell:rect, model: self.message! )
         self.delegate?.messageCollectionView?(didTapMessageBubbleInCell: self, model: self.message!)
         

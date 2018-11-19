@@ -25,6 +25,14 @@
 
 @implementation DWInputBarControl
 
+- (id)init
+{
+    if (self = [super init]) {
+        [self addNotification];
+    }
+    return self;
+}
+
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
@@ -124,7 +132,7 @@
         _atCache = [[NIMInputAtCache alloc] init];
         [self addSubContentView];
     }
-    [self addNotification];
+    //[self addNotification];//update_by_sin move this call in the  init method
     return self;
 }
 

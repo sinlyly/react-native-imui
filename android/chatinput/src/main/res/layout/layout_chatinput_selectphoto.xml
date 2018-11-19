@@ -5,9 +5,9 @@
     android:background="@color/aurora_bg_edittext_focus">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_margin="10dp"
         android:id="@+id/aurora_recyclerview_selectphoto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"/>
 
 </FrameLayout>

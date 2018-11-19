@@ -14,6 +14,7 @@ import cn.jiguang.imui.messagelist.module.RCTAccountNotice;
 import cn.jiguang.imui.messagelist.module.RCTBankTransfer;
 import cn.jiguang.imui.messagelist.module.RCTCard;
 import cn.jiguang.imui.messagelist.module.RCTExtend;
+import cn.jiguang.imui.messagelist.module.RCTFile;
 import cn.jiguang.imui.messagelist.module.RCTLink;
 import cn.jiguang.imui.messagelist.module.RCTLocation;
 import cn.jiguang.imui.messagelist.module.RCTMediaFile;
@@ -88,8 +89,6 @@ public class RCTMessageDeserializer implements JsonDeserializer<RCTMessage> {
                 case RECEIVE_VOICE:
                 case SEND_VIDEO:
                 case RECEIVE_VIDEO:
-                case SEND_FILE:
-                case RECEIVE_FILE:
                 case SEND_IMAGE:
                 case RECEIVE_IMAGE:
                     if (jsonObject.has(MessageConstant.Message.EXTEND)) {
@@ -117,6 +116,14 @@ public class RCTMessageDeserializer implements JsonDeserializer<RCTMessage> {
                         ext = jsonObject.get(MessageConstant.Message.EXTEND).getAsJsonObject();
                         extend = new RCTLocation(getGsonString(ext, MessageConstant.Location.LATITUDE), getGsonString(ext, MessageConstant.Location.LONGITUDE),
                                 getGsonString(ext, MessageConstant.Location.ADDRESS));
+                    }
+                    break;
+                case SEND_FILE:
+                case RECEIVE_FILE:
+                    if (jsonObject.has(MessageConstant.Message.EXTEND)) {
+                        ext = jsonObject.get(MessageConstant.Message.EXTEND).getAsJsonObject();
+                        extend = new RCTFile(getGsonString(ext, MessageConstant.File.NAME), getGsonString(ext, MessageConstant.File.EXT),
+                                getGsonString(ext, MessageConstant.File.PATH),getGsonString(ext, MessageConstant.File.SIZE));
                     }
                     break;
                 case SEND_BANK_TRANSFER:
@@ -173,4 +180,6 @@ public class RCTMessageDeserializer implements JsonDeserializer<RCTMessage> {
         }
         return rctMessage;
     }
+
+
 }

@@ -10,7 +10,6 @@
 #import "DWInputBarControl.h"
 #import "UIView+Extend.h"
 
-
 @interface RNCustomInputView ()<DWInputBarControlDelegate>{
     DWInputBarControl *inpuntBar;
 }
@@ -33,10 +32,14 @@ RCT_EXPORT_VIEW_PROPERTY(onClickMention, RCTBubblingEventBlock)
 
 
 - (UIView *)view{
+    //update_by_sin need every one init inputBar
     inpuntBar = [[DWInputBarControl alloc]init];
     inpuntBar.delegate = self;
     return inpuntBar;
 }
+
+
+
 
 //显示menuView
 - (void)changeMenuView{
@@ -80,6 +83,7 @@ RCT_EXPORT_VIEW_PROPERTY(onClickMention, RCTBubblingEventBlock)
         [inpuntBar.inputGrowView endEditing:YES];
         inpuntBar.functionView.hidden = YES;
         inpuntBar.expressionView.hidden = NO;
+        //[inpuntBar.expressionView reloadData];//update_by_sin,add call expressionView reloadData
         [inpuntBar.expressionView setupSendBtnCanSend:([inpuntBar.inputGrowView.text length] ? YES : NO)];
         
         CGFloat inputH = inpuntBar.inputViewHeight + expressionViewH;

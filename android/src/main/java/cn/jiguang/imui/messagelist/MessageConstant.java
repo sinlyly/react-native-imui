@@ -142,4 +142,11 @@ public class MessageConstant {
         public final static String DB = "db";
         public final static String TIME = "time";
     }
+
+    public static class File {
+        public final static String PATH = "path";
+        public final static String SIZE = "size";
+        public final static String NAME = "name";
+        public final static String EXT = "ext";
+    }
 }

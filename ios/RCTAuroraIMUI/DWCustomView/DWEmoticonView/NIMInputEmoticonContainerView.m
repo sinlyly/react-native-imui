@@ -8,6 +8,7 @@
 
 #import "NIMInputEmoticonContainerView.h"
 #import "NIMPageView.h"
+#import <UIKit/UIKit.h>
 
 #import "UIView+Extend.h"
 #import "NIMInputEmoticonButton.h"
@@ -126,7 +127,7 @@ NSInteger NIMCustomPageViewHeight    = 159;
     for (NSInteger index = begin; index < end; index ++)
     {
         NIMInputEmoticon *data = [emoticon.emoticons objectAtIndex:index];
-        
+
         NIMInputEmoticonButton *button = [NIMInputEmoticonButton iconButtonWithData:data catalogID:emoticon.catalogID delegate:self];
         //计算表情位置
         rowIndex    = indexInPage / emoticon.layout.columes;
@@ -307,7 +308,7 @@ NSInteger NIMCustomPageViewHeight    = 159;
 
 - (void)setCurrentCatalogData:(NIMInputEmoticonCatalog *)currentCatalogData{
     _currentCatalogData = currentCatalogData;
-    [self.emoticonPageView scrollToPage:[self pageIndexWithEmoticon:_currentCatalogData]];
+   [self.emoticonPageView scrollToPage:[self pageIndexWithEmoticon:_currentCatalogData]];
 }
 
 - (void)setTotalCatalogData:(NSArray *)totalCatalogData

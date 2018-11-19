@@ -218,6 +218,7 @@ public class ReactMsgListManager extends ViewGroupManager<SmartRefreshLayout> im
             @Override
             public void loadImage(ImageView imageView, String string) {
                 // You can use other image load libraries.
+                int maxWidth = imageView.getMaxWidth();
                 if (reactContext == null || reactContext.getCurrentActivity() == null) {
                     return;
                 }
@@ -254,11 +255,11 @@ public class ReactMsgListManager extends ViewGroupManager<SmartRefreshLayout> im
         mAdapter.setOnMsgClickListener(new MsgListAdapter.OnMsgClickListener<RCTMessage>() {
             @Override
             public void onMessageClick(RCTMessage message) {
-                if (message.getType() == IMessage.MessageType.SEND_IMAGE || message.getType() == IMessage.MessageType.RECEIVE_IMAGE) {
-                    IMediaFile extend = (IMediaFile) message.getExtend();
-                    PhotoViewPagerViewUtil.show(reactContext.getCurrentActivity(), mAdapter.getImageList(), mAdapter.getImageIndex(extend), longClickListener);
-                    return;
-                }
+//                if (message.getType() == IMessage.MessageType.SEND_IMAGE || message.getType() == IMessage.MessageType.RECEIVE_IMAGE) {
+//                    IMediaFile extend = (IMediaFile) message.getExtend();
+//                    PhotoViewPagerViewUtil.show(reactContext.getCurrentActivity(), mAdapter.getImageList(), mAdapter.getImageIndex(extend), longClickListener);
+//                    return;
+//                }
                 WritableMap event = Arguments.createMap();
                 event.putMap("message", message.toWritableMap());
                 reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), ON_MSG_CLICK_EVENT, event);

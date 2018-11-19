@@ -72,7 +72,7 @@ const CGFloat InputLineBoarder = .5f;
         [button sizeToFit];
         [self addSubview:button];
         [_tabs addObject:button];
-        
+
         UIView *sep = [[UIView alloc] initWithFrame:CGRectMake(0, 0, InputLineBoarder, NIMInputEmoticonTabViewHeight)];
 //        sep.backgroundColor = sepColor;
         sep.backgroundColor = [UIColor grayColor];

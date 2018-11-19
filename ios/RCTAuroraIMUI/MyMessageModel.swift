@@ -25,16 +25,17 @@ open class RCTMessageModel: IMUIMessageModel {
   static let kMsgTypeVoice = "voice"
   static let kMsgTypeVideo = "video"
   static let kMsgTypeImage = "image"
-    static let kMsgTypeLocation = "location"
-    static let kMsgTypeNotification = "notification"
-    static let kMsgTypeRedpacket = "redpacket"
-    static let kMsgTypeTransfer = "transfer"
-    static let kMsgTypeUrl = "url"
-    static let kMsgTypeAccountNotifce = "account_notice"
-    static let kMsgTypeRedpacketOpen = "redpacketOpen"
-    static let kMsgTypeCard = "card"
-    static let kMsgTypeUnKnow = "unknown"
-    static let kMsgTypeCustom = "custom"
+  static let kMsgTypeLocation = "location"
+  static let kMsgTypeNotification = "notification"
+  static let kMsgTypeRedpacket = "redpacket"
+  static let kMsgTypeTransfer = "transfer"
+  static let kMsgTypeUrl = "url"
+  static let kMsgTypeAccountNotifce = "account_notice"
+  static let kMsgTypeRedpacketOpen = "redpacketOpen"
+  static let kMsgTypeCard = "card"
+  static let kMsgTypeUnKnow = "unknown"
+  static let kMsgTypeCustom = "custom"
+  static let kMsgTypeFile = "file"
     
     
   static let kMsgKeyMsgId = "msgId"
@@ -212,25 +213,27 @@ open class RCTMessageModel: IMUIMessageModel {
         msgType = .image
         customDict = messageDic.object(forKey: RCTMessageModel.kMsgKeyExtend) as! NSMutableDictionary
       }else if typeString == RCTMessageModel.kMsgTypeVoice {
-        
         msgType = .voice
         customDict = messageDic.object(forKey: RCTMessageModel.kMsgKeyExtend) as! NSMutableDictionary
       }else if typeString == RCTMessageModel.kMsgTypeVideo {
         msgType = .video
         customDict = messageDic.object(forKey: RCTMessageModel.kMsgKeyExtend) as! NSMutableDictionary
+      }else if typeString == RCTMessageModel.kMsgTypeFile {
+        msgType = .file
+        customDict = messageDic.object(forKey: RCTMessageModel.kMsgKeyExtend) as! NSMutableDictionary
       }else if typeString == RCTMessageModel.kMsgTypeLocation {
             msgType = .location
             customDict = messageDic.object(forKey: RCTMessageModel.kMsgKeyExtend) as! NSMutableDictionary
-        }else if typeString == RCTMessageModel.kMsgTypeNotification {
+      }else if typeString == RCTMessageModel.kMsgTypeNotification {
             msgType = .notification
             customDict = messageDic.object(forKey: RCTMessageModel.kMsgKeyExtend) as! NSMutableDictionary
-        }else if typeString == RCTMessageModel.kMsgTypeRedpacket {
+      }else if typeString == RCTMessageModel.kMsgTypeRedpacket {
             msgType = .redpacket
             customDict = messageDic.object(forKey: RCTMessageModel.kMsgKeyExtend) as! NSMutableDictionary
-        }else if typeString == RCTMessageModel.kMsgTypeTransfer {
+      }else if typeString == RCTMessageModel.kMsgTypeTransfer {
             msgType = .transfer
             customDict = messageDic.object(forKey: RCTMessageModel.kMsgKeyExtend) as! NSMutableDictionary
-        }else if typeString == RCTMessageModel.kMsgTypeRedpacketOpen {
+      }else if typeString == RCTMessageModel.kMsgTypeRedpacketOpen {
             msgType = .redpacketOpen
             customDict = messageDic.object(forKey: RCTMessageModel.kMsgKeyExtend) as! NSMutableDictionary
       }else if typeString == RCTMessageModel.kMsgTypeCard{
@@ -341,6 +344,10 @@ open class RCTMessageModel: IMUIMessageModel {
         messageDic.setValue(RCTMessageModel.kMsgTypeVideo, forKey: RCTMessageModel.kMsgKeyMsgType)
         messageDic.setValue(self.mediaPath, forKey: RCTMessageModel.kMsgKeyMediaFilePath)
         messageDic.setValue(self.duration, forKey: RCTMessageModel.kMsgKeyDuration)
+        messageDic.setValue(self.customDict, forKey: RCTMessageModel.kMsgKeyExtend)
+        break
+      case .file:
+        messageDic.setValue(RCTMessageModel.kMsgTypeFile, forKey: RCTMessageModel.kMsgKeyMsgType)
         messageDic.setValue(self.customDict, forKey: RCTMessageModel.kMsgKeyExtend)
         break
       case .location:

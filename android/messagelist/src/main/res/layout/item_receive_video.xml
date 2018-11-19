@@ -9,8 +9,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="4dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
 
         <include layout="@layout/item_head_left" />
 
@@ -22,13 +22,15 @@
             android:layout_toRightOf="@id/aurora_iv_msgitem_avatar" />
 
         <FrameLayout
-            android:layout_marginTop="@dimen/aurora_message_padding_top"
-            android:layout_marginLeft="@dimen/aurora_avatar_padding"
+            android:id="@+id/aurora_fl_msgitem_video_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_below="@id/aurora_tv_msgitem_display_name"
-            android:layout_toEndOf="@id/aurora_iv_msgitem_avatar"
-            android:layout_toRightOf="@id/aurora_iv_msgitem_avatar">
+            android:layout_marginLeft="@dimen/aurora_avatar_padding"
+            android:layout_toEndOf="@+id/aurora_iv_msgitem_avatar"
+            android:layout_toRightOf="@+id/aurora_iv_msgitem_avatar"
+            android:background="@drawable/aurora_bg_video">
 
             <cn.jiguang.imui.view.ShapeImageView
                 android:id="@+id/aurora_iv_msgitem_cover"
@@ -36,14 +38,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                app:videomessage_radius="8dp" />
+                app:videomessage_radius="8dp"/>
 
             <ImageView
                 android:id="@+id/aurora_iv_msgitem_play"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_gravity="center"
-                android:src="@drawable/aurora_videomessage_play" />
+                android:src="@drawable/aurora_videomessage_play"/>
 
             <TextView
                 android:id="@+id/aurora_tv_duration"
@@ -53,7 +55,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginRight="8dp"
                 android:textColor="@android:color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"/>
         </FrameLayout>
     </RelativeLayout>
 </LinearLayout>

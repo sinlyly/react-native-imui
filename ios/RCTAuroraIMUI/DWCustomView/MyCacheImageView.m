@@ -24,4 +24,5 @@
     [self sd_setImageWithURL:[NSURL URLWithString:URL] placeholderImage:image];
 }
 
+
 @end

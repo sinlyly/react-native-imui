@@ -30,6 +30,7 @@ import cn.jiguang.imui.messages.viewholder.BaseMessageViewHolder;
 import cn.jiguang.imui.messages.viewholder.CardViewHolder;
 import cn.jiguang.imui.messages.viewholder.CustonViewHolder;
 import cn.jiguang.imui.messages.viewholder.EventViewHolder;
+import cn.jiguang.imui.messages.viewholder.FileViewHolder;
 import cn.jiguang.imui.messages.viewholder.LinkViewHolder;
 import cn.jiguang.imui.messages.viewholder.LocationViewHolder;
 import cn.jiguang.imui.messages.viewholder.NotificationViewHolder;
@@ -90,6 +91,10 @@ public class MsgListAdapter<MESSAGE extends IMessage> extends RecyclerView.Adapt
 
     private final int TYPE_SEND_CARD = 24;
     private final int TYPE_RECEIVER_CARD = 25;
+
+    //update_by_sin
+    private final int TYPE_SEND_FILE = 26;
+    private final int TYPE_RECEIVER_FILE = 27;
 
     private Context mContext;
     private Activity mActivity;
@@ -251,6 +256,10 @@ public class MsgListAdapter<MESSAGE extends IMessage> extends RecyclerView.Adapt
                 return getHolder(parent, mHolders.mSendLinkLayout, mHolders.mSendLinkHoler, true);
             case TYPE_RECEIVER_LINK:
                 return getHolder(parent, mHolders.mReceiveLinkLayout, mHolders.mReceiveLinkHolder, false);
+            case TYPE_SEND_FILE:
+                return getHolder(parent, mHolders.mSendFileLayout, mHolders.mSendFileHolder, true);
+            case TYPE_RECEIVER_FILE:
+                return getHolder(parent, mHolders.mReceiveFileLayout, mHolders.mReceiveFileHolder, false);
             default:
                 return getHolder(parent, mHolders.mCustomMsgLayout, mHolders.mCustomMsgHolder, false);
         }
@@ -315,6 +324,10 @@ public class MsgListAdapter<MESSAGE extends IMessage> extends RecyclerView.Adapt
                     return TYPE_SEND_LINK;
                 case RECEIVE_LINK:
                     return TYPE_RECEIVER_LINK;
+                case SEND_FILE:
+                    return TYPE_SEND_FILE;
+                case RECEIVE_FILE:
+                    return TYPE_RECEIVER_FILE;
                 default:
                     return TYPE_CUSTOM;
             }
@@ -893,6 +906,10 @@ public class MsgListAdapter<MESSAGE extends IMessage> extends RecyclerView.Adapt
         private Class<? extends BaseMessageViewHolder<? extends IMessage>> mSendLinkHoler;
         private Class<? extends BaseMessageViewHolder<? extends IMessage>> mReceiveLinkHolder;
 
+        //update_by_sin
+        private Class<? extends BaseMessageViewHolder<? extends IMessage>> mSendFileHolder;
+        private Class<? extends BaseMessageViewHolder<? extends IMessage>> mReceiveFileHolder;
+
         private int mSendTxtLayout;
         private int mReceiveTxtLayout;
 
@@ -931,6 +948,11 @@ public class MsgListAdapter<MESSAGE extends IMessage> extends RecyclerView.Adapt
         private int mSendLinkLayout;
         private int mReceiveLinkLayout;
 
+        //update_by_sin
+        private int mSendFileLayout;
+        private int mReceiveFileLayout;
+
+
         public HoldersConfig() {
             mSendTxtHolder = DefaultTxtViewHolder.class;
             mReceiveTxtHolder = DefaultTxtViewHolder.class;
@@ -963,6 +985,10 @@ public class MsgListAdapter<MESSAGE extends IMessage> extends RecyclerView.Adapt
 
             mSendLinkHoler = DefaultLinkViewHolder.class;
             mReceiveLinkHolder = DefaultLinkViewHolder.class;
+
+            //update_by_sin
+            mSendFileHolder = DefaultFileViewHolder.class;
+            mReceiveFileHolder = DefaultFileViewHolder.class;
 
             mSendTxtLayout = R.layout.item_send_text;
             mReceiveTxtLayout = R.layout.item_receive_txt;
@@ -1013,6 +1039,10 @@ public class MsgListAdapter<MESSAGE extends IMessage> extends RecyclerView.Adapt
 
             mRedPacketOpenMsgHolder = DefaultRedPacketOpenMsgViewHolder.class;
             mRedPacketOpenLayout = R.layout.item_red_packet_open_message;
+
+            mSendFileLayout = R.layout.item_send_file;
+            mReceiveFileLayout = R.layout.item_receive_file;
+
         }
 
         /**
@@ -1206,6 +1236,52 @@ public class MsgListAdapter<MESSAGE extends IMessage> extends RecyclerView.Adapt
             this.mRedPacketOpenMsgHolder = holder;
             this.mRedPacketOpenLayout = layout;
         }
+
+        //update_by_sin_begin
+        /**
+         * In place of default send file message style by passing custom view holder and layout.
+         *
+         * @param holder Custom view holder that extends BaseMessageViewHolder.
+         * @param layout custom send video message layout
+         */
+        public void setSendFileMsg(Class<? extends BaseMessageViewHolder<? extends IMessage>> holder,
+                                    @LayoutRes int layout) {
+            this.mSendFileHolder = holder;
+            this.mSendFileLayout = layout;
+        }
+
+        /**
+         * Customize send file message layout.
+         *
+         * @param layout Custom send file message layout.
+         */
+        public void setSendFileLayout(@LayoutRes int layout) {
+            this.mSendFileLayout = layout;
+        }
+
+        /**
+         * In place of default receive video message style by passing custom view holder and layout.
+         *
+         * @param holder Custom view holder that extends BaseMessageViewHolder.
+         * @param layout Custom receive video message layout
+         */
+        public void setReceiveFileMsg(Class<? extends BaseMessageViewHolder<? extends IMessage>> holder,
+                                       @LayoutRes int layout) {
+            this.mReceiveFileHolder = holder;
+            this.mReceiveFileLayout = layout;
+        }
+
+        /**
+         * Customize receive video message layout.
+         *
+         * @param layout Custom receive video message layout.
+         */
+        public void setReceiveFileLayout(@LayoutRes int layout) {
+            this.mReceiveFileLayout = layout;
+        }
+
+        //update_by_sin_end
+
     }
 
     private static class DefaultTxtViewHolder extends TxtViewHolder<IMessage> {
@@ -1305,6 +1381,17 @@ public class MsgListAdapter<MESSAGE extends IMessage> extends RecyclerView.Adapt
     private static class DefaultLocationViewHolder extends LocationViewHolder<IMessage> {
 
         public DefaultLocationViewHolder(RecyclerView.Adapter adapter, View itemView, boolean isSender) {
+            super(adapter, itemView, isSender);
+        }
+    }
+
+    /**
+     * update_by_sin
+     * 构造文件展示图形类
+     */
+    private static class DefaultFileViewHolder extends FileViewHolder<IMessage> {
+
+        public DefaultFileViewHolder(RecyclerView.Adapter adapter, View itemView, boolean isSender) {
             super(adapter, itemView, isSender);
         }
     }

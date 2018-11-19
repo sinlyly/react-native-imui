@@ -145,6 +145,7 @@
 		4EC4F96D1F46F0B1000C5CA6 /* MenuPopOverView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EC4F96B1F46F0B1000C5CA6 /* MenuPopOverView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4EC4F96E1F46F0B1000C5CA6 /* MenuPopOverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4F96C1F46F0B1000C5CA6 /* MenuPopOverView.m */; };
 		4EDCA75C2089809A00B6DB55 /* IMUICustomMessageContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDCA75B2089809A00B6DB55 /* IMUICustomMessageContentCell.swift */; };
+		560910152125721A00197438 /* IMUIFileMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560910142125721A00197438 /* IMUIFileMessageCell.swift */; };
 		623EA9A21EE55D0800EC43AE /* RCTAuroraIMUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 623EA9991EE55D0800EC43AE /* RCTAuroraIMUI.framework */; };
 		623EA9A71EE55D0800EC43AE /* RCTAuroraIMUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 623EA9A61EE55D0800EC43AE /* RCTAuroraIMUITests.m */; };
 		623EA9A91EE55D0800EC43AE /* RCTAuroraIMUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 623EA99B1EE55D0800EC43AE /* RCTAuroraIMUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -331,6 +332,7 @@
 		4EC4F96B1F46F0B1000C5CA6 /* MenuPopOverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuPopOverView.h; sourceTree = "<group>"; };
 		4EC4F96C1F46F0B1000C5CA6 /* MenuPopOverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPopOverView.m; sourceTree = "<group>"; };
 		4EDCA75B2089809A00B6DB55 /* IMUICustomMessageContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMUICustomMessageContentCell.swift; sourceTree = "<group>"; };
+		560910142125721A00197438 /* IMUIFileMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMUIFileMessageCell.swift; sourceTree = "<group>"; };
 		6239E6641EDDB1F700B9AC9C /* libAuroraIMUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAuroraIMUI.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		623EA9701EE55CB200EC43AE /* imuiDemo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "imuiDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		623EA9721EE55CB200EC43AE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 				4E34C33C1F3DA73900AF4B73 /* IMUIRedPacketOpenMessageCell.swift */,
 				4E31CB2C1F5E8ED6007C3096 /* IMUIUnKnownMessageCell.swift */,
 				4EDCA75B2089809A00B6DB55 /* IMUICustomMessageContentCell.swift */,
+				560910142125721A00197438 /* IMUIFileMessageCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1026,6 +1029,7 @@
 				4E49AD961F34178000B50439 /* DWInputBarControl.m in Sources */,
 				4E49AE271F34767100B50439 /* UIImage+NIM.m in Sources */,
 				4E6804C020B512000024DAFC /* DWPlayVideoVC.m in Sources */,
+				560910152125721A00197438 /* IMUIFileMessageCell.swift in Sources */,
 				4E5274CE1F3C0925005FB9B9 /* IMUILocationMessageCell.swift in Sources */,
 				4E77A3AF1F30840000098CAF /* IMUIChatDataManager.swift in Sources */,
 				624B829B1EE5710E006C3C03 /* RCTMessageListView.m in Sources */,

@@ -56,26 +56,24 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/card_icon"
-                    android:layout_margin="@dimen/red_packet_image_margin"
-                    android:src="@drawable/aurora_headicon_default"
+                    android:id="@+id/file_icon"
                     android:layout_width="48dp"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"
+                    android:layout_margin="@dimen/red_packet_image_margin"
+                    android:src="@drawable/file_thumb"/>
 
                 <TextView
-                    android:id="@+id/card_name"
+                    android:id="@+id/file_name"
                     android:layout_width="264dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="31dp"
-                    android:layout_marginTop="@dimen/red_packet_top"
-                    android:layout_toRightOf="@+id/card_icon"
+                    android:layout_toRightOf="@+id/file_icon"
                     android:ellipsize="end"
-                    android:lines="1"
+                    android:lines="2"
                     android:textColor="@color/black"
                     android:textSize="@dimen/red_packet_comments_size"/>
                 <TextView
-                    android:id="@+id/card_id"
+                    android:id="@+id/file_id"
                     android:layout_marginTop="6dp"
                     android:layout_toRightOf="@+id/card_icon"
                     android:layout_below="@+id/card_name"
@@ -89,15 +87,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/link_card" />
+
             <TextView
-                android:id="@+id/card_type"
-                android:background="@drawable/red_packet_bottom"
-                android:padding="5dp"
-                android:textSize="@dimen/red_packet_tag_size"
-                android:textColor="@color/red_packet_tag"
+                android:id="@+id/file_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="红包" />
+                android:background="@drawable/red_packet_bottom"
+                android:padding="5dp"
+                android:text="文件"
+                android:textColor="@color/red_packet_tag"
+                android:textSize="@dimen/red_packet_tag_size"/>
         </LinearLayout>
 
         <include layout="@layout/item_head_right"/>

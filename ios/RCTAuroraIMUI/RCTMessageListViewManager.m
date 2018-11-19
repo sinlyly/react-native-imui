@@ -73,12 +73,9 @@ RCT_EXPORT_MODULE()
 //  let bundle = Bundle.imuiBundle()
 //  view = bundle.loadNibNamed("IMUIMessageCollectionView", owner: self, options: nil)?.first as! UIView
   NSBundle *bundle = [NSBundle bundleForClass: [RCTMessageListView class]];
-  
   _messageList = [[bundle loadNibNamed:@"RCTMessageListView" owner:self options: nil] objectAtIndex:0];
   _messageList.messageList.delegate = self;
-    
   _messageList.delegate = self;
-  
   
   return _messageList;
   

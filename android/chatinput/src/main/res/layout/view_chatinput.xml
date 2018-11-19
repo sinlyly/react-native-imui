@@ -35,7 +35,7 @@
                 android:background="@android:color/transparent"
                 android:clickable="false"
                 android:scaleType="fitCenter"
-                android:src="@drawable/nim_message_button_bottom_audio_selector" />
+                android:src="@drawable/nim_message_button_bottom_audio_selector"/>
         </FrameLayout>
         <android.support.v4.widget.Space
             android:layout_width="@dimen/imui_chat_space"
@@ -63,14 +63,14 @@
                 android:textSize="18sp" />
 
             <Button
-                android:layout_gravity="center"
                 android:id="@+id/imui_chat_voice"
-                android:layout_width="match_parent"
                 style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/imui_chat_input_width"
+                android:layout_gravity="center"
                 android:background="@drawable/voice_bg"
                 android:text="按住 说话"
-                android:visibility="visible" />
+                android:visibility="visible"/>
         </FrameLayout>
         <android.support.v4.widget.Space
             android:layout_width="@dimen/imui_chat_space"
@@ -161,11 +161,17 @@
         android:layout_height="wrap_content"
         android:gravity="center">
 
-
-        <dowin.com.emoji.emoji.EmoticonPickerView
-            android:id="@+id/emoticon_picker_view"
+        <LinearLayout
+            android:id="@+id/aurora_view_emoticon_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <dowin.com.emoji.emoji.EmoticonPickerView
+                android:id="@+id/emoticon_picker_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/aurora_view_action_layout"
